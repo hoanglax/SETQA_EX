@@ -25,10 +25,13 @@ from loan_service.logic import calculate_credit_limit, format_result
         (40, 80.1, {"status": "APPROVED", "tier": "Platinum Tier", "credit_limit": 560.7}),
         (40, 199.9, {"status": "APPROVED", "tier": "Platinum Tier", "credit_limit": 1399.3}),
         (40, 200.0, {"status": "APPROVED", "tier": "Platinum Tier", "credit_limit": 1400.0}),
-        (40, 200.1, {"status": "APPROVED", "tier": "Platinum Tier", "credit_limit": 1400.0}),
+        (40, 200.1, {"status": "REJECTED", "reason": "Invalid Salary"}), # SỬA TẠI ĐÂY
         (40, 105.0, {"status": "APPROVED", "tier": "Platinum Tier", "credit_limit": 735.0}),
         
-        #　TYPE CHECKING CASES
+        # TC22 PRECISION CASE (Diệt Mutant M4)
+        (40, 10.125, {"status": "APPROVED", "tier": "Silver Tier", "credit_limit": 30.38}),
+        
+        # TYPE CHECKING CASES
         (True, 105.0, {"status": "REJECTED", "reason": "Invalid Age"}),
         (40, True, {"status": "REJECTED", "reason": "Invalid Salary"}),
     ],
@@ -37,8 +40,9 @@ from loan_service.logic import calculate_credit_limit, format_result
         "AGE_59_Max-", "AGE_60_Max", "AGE_61_Invalid",
         "SAL_9.9_Invalid", "SAL_10.0_Min", "SAL_10.1_Min+", "SAL_29.9_Silver_Max",
         "SAL_30.0_Gold_Min", "SAL_30.1_Gold_Min+", "SAL_79.9_Gold_Max", "SAL_80.0_Plat_Min",
-        "SAL_80.1_Plat_Min+", "SAL_199.9_Max-", "SAL_200.0_Max", "SAL_200.1_Capped",
+        "SAL_80.1_Plat_Min+", "SAL_199.9_Max-", "SAL_200.0_Max", "SAL_200.1_Invalid", # SỬA ID
         "BASELINE_Nom_Nom",
+        "TC22_PRECISION_Round", # BỔ SUNG ID TC22
         "TYPE_Bool_Age", "TYPE_Bool_Salary"
     ]
 )

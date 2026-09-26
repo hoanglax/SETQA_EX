@@ -40,19 +40,16 @@ INSURED_AMOUNT_UNIT = 100
 
 
 def is_valid_domain(application: PolicyApplication) -> bool:
-    if not (isinstance(application.age, int) and AGE_MIN <= application.age <= AGE_MAX):
+    if isinstance(application.age, bool) or not isinstance(application.age, int) or not (AGE_MIN <= application.age <= AGE_MAX):
         return False
-    if not (isinstance(application.bmi, (int, float)) and BMI_MIN <= float(application.bmi) <= BMI_MAX):
+    
+    if isinstance(application.bmi, bool) or not isinstance(application.bmi, (int, float)) or not (BMI_MIN <= float(application.bmi) <= BMI_MAX):
         return False
-    if not (
-        isinstance(application.insured_amount, int)
-        and INSURED_AMOUNT_MIN <= application.insured_amount <= INSURED_AMOUNT_MAX
-    ):
+    
+    if isinstance(application.insured_amount, bool) or not isinstance(application.insured_amount, int) or not (INSURED_AMOUNT_MIN <= application.insured_amount <= INSURED_AMOUNT_MAX):
         return False
-    if not (
-        isinstance(application.claims_last_year, int)
-        and CLAIMS_MIN <= application.claims_last_year <= CLAIMS_MAX
-    ):
+    
+    if isinstance(application.claims_last_year, bool) or not isinstance(application.claims_last_year, int) or not (CLAIMS_MIN <= application.claims_last_year <= CLAIMS_MAX):
         return False
     return True
 

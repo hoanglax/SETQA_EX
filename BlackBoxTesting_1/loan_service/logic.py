@@ -22,7 +22,7 @@ def calculate_credit_limit(age: int, monthly_salary: float) -> dict:
     # 2. Kiểm tra biên ngoại (Outside Boundaries)
     if age < AGE_MIN or age > AGE_MAX:
         return {"status": "REJECTED", "reason": "Invalid Age"}
-    if monthly_salary < SALARY_MIN:
+    if monthly_salary < SALARY_MIN or monthly_salary > SALARY_MAX:
         return {"status": "REJECTED", "reason": "Invalid Salary"}
 
     # 3. Áp dụng trần thu nhập (Capping limit)
